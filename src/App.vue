@@ -1,19 +1,47 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import FIT5032Msg from './components/FIT5032Msg.vue'
+import JSON from './components/JSON.vue'
+import { computed } from 'vue'
+
+
+//Activity 2.2: Get All Famous Works
+const allFamousWorks = computed(() =>
+  authors.flatmap((author) => author.allFamousWorks.map((work) => work.title)));
+
+
+
 </script>
 
+
+
 <template>
+  <header>
+    <h1>Activity 3.1: Render a list containing author names and their birth years</h1>
+      <div>
+        <ul>
+          <li v-for="author in authors" :key="author.id">
+            {{ author.name }} ({{ author.birthYear }})
+          </li>
+        </ul>
+    </div>
+  </header>
+
+
+
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="we did it!" />
+      <FIT5032Msg msg="Fit5032 very fun"/>
+      <JSON />
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <!-- <TheWelcome /> -->
   </main>
 </template>
 
