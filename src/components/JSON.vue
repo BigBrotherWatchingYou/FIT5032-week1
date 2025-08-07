@@ -45,7 +45,11 @@
       <p>{{ austen?.name }}'s works:</p>
       <!-- Activity 9: Render a list of Austen's works. Hint: Use the v-for directive to iterate through the array of authors that you have filtered out. -->
       <!-- TODO: CODE TO RENDER LIST OF AUSTEN'S WORKS HERE -->
-       --------------------------------End of 04/08/2025---------------------------------
+
+      <li v-for="(work, index) in austen?.famousWorks" :key="index">
+        {{ work.title }} ({{ work.year }})
+      </li>
+
     </section>
 
     <section class="lab-section">
@@ -57,29 +61,42 @@
         Company:
         <!-- Activity 9a: Get the company name from the bookstores object. -->
         <!-- TODO: CODE TO GET COMPANY NAME HERE -->
+        <li> {{ bookstores.name }}</li>
       </p>
 
       <p>
         Total Stores:
         <!-- Activity 9b: Get the total number of stores from the bookstores object. -->
         <!-- TODO: CODE TO GET TOTAL STORES HERE -->
+        <li>{{ bookstores.totalStores }}</li>
       </p>
 
       <h3>Iterating Object Properties</h3>
       <p>Store Types:</p>
-      <!-- Activity 10: Iterate through the storeTypes array and display the store type and the number of stores that use that type. -->
+      <!-- Activity 10: Iterate through the storeTypes array, and display the store type, and the number of stores that use that type. -->
       <!-- TODO: CODE TO RENDER LIST OF STORE TYPES HERE -->
+          <li v-for="(count, typename) in bookstores.storeTypes" :key="typename">
+          {{ typename }}: {{ count }} store(s)
+          </li>
 
       <h3>Nested Objects</h3>
       <p>Opening Hours:</p>
       <!-- Activity 11: Iterate through the openingHours object and display the day of the week and the opening and closing times. -->
       <!-- TODO: CODE TO RENDER LIST OF OPENING HOURS HERE -->
-
+       "weekdays": { "open": "9:00 AM", "close": "9:00 PM" },
+        <li v-for="(time, day) in bookstores.openingHours" :key="day">
+          {{ day }}: {{ time.open }} - {{ time.close }}
+        </li>  
       <h3>Working with Arrays in Objects</h3>
       <!-- Activity 12: Get the top sellers from the bookstores object. -->
       <!-- TODO: CODE TO GET TOP SELLERS HERE -->
+
       <p>We operate in:</p>
+            <li v-for="(books, index) in bookstores.topSellers":key="index">
+        {{ books }}
+      </li>
       <p>Our #1 seller:</p>
+      <li>{{ bookstores.topSellers[0] }}</li>
     </section>
 
     <section class="lab-section">
@@ -88,14 +105,30 @@
       <!-- Activity 13: Toggle the message visibility when the button is clicked. -->
       <!-- TODO: CODE TO TOGGLE MESSAGE VISIBILITY HERE. Hint: Use the v-if directive. -->
       <button @click="showMessage = !showMessage">Toggle Message</button>
-      <p class="message success">✨ You're a Vue superstar! ✨</p>
-      <p>Click the button to see a message.</p>
+      <p v-if="showMessage" class="message success">
+        ✨ You're a Vue superstar! ✨
+      </p>
+      <p v-else class="message">Click the button to see a message.</p>
     </section>
 
     <section class="lab-section">
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
+    <!-- HIGHLIGHT George Orwell -->  
+    <section class="lab-section">
+      <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
+      <p>Highlighting Specific Authors:</p>
 
+      <ul>
+        <li
+          v-for="author in authors"
+          :key="author.id"
+          :class="{ highlight: author.name.toLowerCase() === 'george orwell' }"
+        >
+          {{ author.name }}
+        </li>
+      </ul>
+    </section> 
     </section>
   </div>
 </template>
@@ -173,6 +206,7 @@ h1 {
 
 .highlight {
   background-color: #42b883;
+  font-weight: bold;
 }
 
 code {
@@ -192,4 +226,6 @@ li {
   margin: 5px 0;
   border-radius: 5px;
 }
+
+
 </style>
