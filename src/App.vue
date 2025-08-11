@@ -8,8 +8,8 @@ import { computed } from 'vue'
 
 //Activity 2.2: Get All Famous Works
 const allFamousWorks = computed(() =>
-  authors.flatmap((author) => author.allFamousWorks.map((work) => work.title)));
-
+  authors.flatMap(author => author.allFamousWorks.map(work => work.title))
+);
 
 
 </script>
@@ -17,6 +17,31 @@ const allFamousWorks = computed(() =>
 
 
 <template>
+
+  <div class="form">
+    <h1>User Information Form / Credentials</h1>
+    <form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        
+        <label for="isAustralian">Australian Resident?</label><br>
+        <input type="checkbox" id="isAustralian" name="isAustralian"><br>
+        
+        <label for="reason">Reason For Joining:</label><br>
+        <textarea id="reason" name="reason" rows="3"></textarea><br>
+        
+        <label for="gender">Gender</label><br>
+        <select id="gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+        </select>
+    </form>
+  </div>
+
   <header>
     <h1>Activity 3.1: Render a list containing author names and their birth years</h1>
       <div>
@@ -25,7 +50,7 @@ const allFamousWorks = computed(() =>
             {{ author.name }} ({{ author.birthYear }})
           </li>
         </ul>
-    </div>
+      </div>
   </header>
 
 
