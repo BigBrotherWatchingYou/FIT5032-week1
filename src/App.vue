@@ -4,69 +4,35 @@ import TheWelcome from './components/TheWelcome.vue'
 import FIT5032Msg from './components/FIT5032Msg.vue'
 import JSON from './components/JSON.vue'
 import { computed } from 'vue'
-
+import Form from './components/Form.vue'
 
 //Activity 2.2: Get All Famous Works
 const allFamousWorks = computed(() =>
   authors.flatMap(author => author.allFamousWorks.map(work => work.title))
 );
-
-
 </script>
 
-
-
 <template>
-
-  <div class="form">
-    <h1>User Information Form / Credentials</h1>
-    <form>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        
-        <label for="isAustralian">Australian Resident?</label><br>
-        <input type="checkbox" id="isAustralian" name="isAustralian"><br>
-        
-        <label for="reason">Reason For Joining:</label><br>
-        <textarea id="reason" name="reason" rows="3"></textarea><br>
-        
-        <label for="gender">Gender</label><br>
-        <select id="gender">
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="other">Other</option>
-        </select>
-    </form>
-  </div>
-
   <header>
-    <h1>Activity 3.1: Render a list containing author names and their birth years</h1>
-      <div>
-        <ul>
-          <li v-for="author in authors" :key="author.id">
-            {{ author.name }} ({{ author.birthYear }})
-          </li>
-        </ul>
-      </div>
-  </header>
 
-
-
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="we did it!" />
-      <FIT5032Msg msg="Fit5032 very fun"/>
-      <JSON />
+    <div>
+      <ul>
+        <li v-for="author in authors" :key="author.id">
+          {{ author.name }} ({{ author.birthYear }})
+        </li>
+      </ul>
     </div>
   </header>
 
+
+
   <main>
     <!-- <TheWelcome /> -->
+    <div class="form">
+      <h1>User Information Form / Credentials</h1>
+
+      <Form />
+    </div>
   </main>
 </template>
 
