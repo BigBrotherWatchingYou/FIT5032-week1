@@ -7,7 +7,10 @@
                     <div class="row mb-3">
                         <div class="col-sm-6">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" v-model="formData.username">
+                            <input type="text" class="form-control" id="username" @blur="() => validateName(true)"
+                                @input="() => validateName(false)" v-model="formData.username">
+                            <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
+
                         </div>
                         <div class="col-sm-6">
                             <label for="password" class="form-label">Password</label>
@@ -99,13 +102,38 @@ const formData = ref({
 const submittedCards = ref([]);
 
 const submitForm = () => {
-    submittedCards.value.push({
-        ...formData.value
-    });
+    validateName(true);
+    if (!errors.value.username) {
+        submittedCards.value.push({
+            ...formData.value
+        });
+        clearForm();
+    }
+
 };
 
 const clearForm = () => {
     submittedCards.value = [];   // <-- clear ONLY the printed results
 };
 
+const errors = ref({
+    username: null,
+    password: null,
+    resident: null,
+    gender: null,
+    reason: null,
+});
+
+const validateName = (blur) => {
+    if (formData.value.username.length < 3) {
+        if (blur) errors.value.username = "user name must be at least 3 letters";
+    } else {
+        errors.value.username = null;
+    }
+};
+
+
+const validatePassword = (blur) => {
+    const password = formData.value.password;
+}
 </script>
