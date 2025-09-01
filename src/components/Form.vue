@@ -135,5 +135,6 @@ const validateName = (blur) => {
 
 const validatePassword = (blur) => {
     const password = formData.value.password;
+
 }
 </script>
