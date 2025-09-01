@@ -6,16 +6,14 @@ import JSON from './components/JSON.vue'
 import { computed } from 'vue'
 import Form from './components/Form.vue'
 
-
 //Activity 2.2: Get All Famous Works
 const allFamousWorks = computed(() =>
-  authors.flatMap(author => author.allFamousWorks.map(work => work.title))
-);
+  authors.flatMap((author) => author.allFamousWorks.map((work) => work.title)),
+)
 </script>
 
 <template>
   <header>
-
     <div>
       <ul>
         <li v-for="author in authors" :key="author.id">
@@ -24,8 +22,6 @@ const allFamousWorks = computed(() =>
       </ul>
     </div>
   </header>
-
-
 
   <main>
     <!-- <TheWelcome /> -->
