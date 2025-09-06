@@ -5,15 +5,14 @@ import BHeader from './components/BHeader.vue'
 </script>
 
 <template>
-  <div class="main-container">
+  <div class="main-container d-flex flex-column min-vh-100">
     <header>
       <BHeader />
     </header>
 
-    <main class="main-box">
-      <!--LibraryRegistrationForm /-->
-      <!-- <JSONLab /> -->
-       <router-view></router-view>
+    <main class="main-box flex-grow-1">
+      <!-- Page content from the router -->
+      <RouterView />
     </main>
   </div>
 </template>

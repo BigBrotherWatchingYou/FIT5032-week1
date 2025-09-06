@@ -12,4 +12,3 @@
 <style>
 </style>
 
-Hopefully you are all set up
