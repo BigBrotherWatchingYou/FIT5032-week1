@@ -32,6 +32,9 @@ function onLogout() {
             @click="onLogout"
           >Logout</button>
         </li>
+        <li class="nav-item">
+          <router-link to="FirebaseSigninView" class="nav-link" active-class="active">Firebase Login</router-link>
+        </li>
       </ul>
     </header>
   </div>

@@ -60,7 +60,7 @@ const validatePassword = (blur) => {
 
   if (password.length < minLength) {
     if (blur) errors.value.password = `Password must be at least ${minLength} characters long.`
-  } else if (!hasUppercase) {
+  } else if (!hasUppercase) { 
     if (blur) errors.value.password = 'Password must contain at least one uppercase letter.'
   } else if (!hasLowercase) {
     if (blur) errors.value.password = 'Password must contain at least one lowercase letter.'
