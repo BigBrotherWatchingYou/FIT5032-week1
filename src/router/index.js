@@ -5,6 +5,7 @@ import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
 import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 import AddBookView from '@/views/AddBookView.vue'
 import UserDashboard from '@/views/UserDashboard.vue'
+import WeatherView from './WeatherView.vue'
 
 const routes = [
   {
@@ -33,6 +34,12 @@ const routes = [
     component: AddBookView
   },
   { path: '/user', name: 'User', component: UserDashboard, meta: { requiresAuth: true }, alias: ['/dashboard'] },
+
+  {
+    path: '/WeatherCheck',
+    name: 'WeatherCheck',
+    component: WeatherView
+  },
   {
     path: '/Firelogin',
     redirect: { name: 'FirebaseSignin' }

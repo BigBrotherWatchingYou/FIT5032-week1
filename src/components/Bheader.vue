@@ -5,73 +5,35 @@
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <router-link to="/" class="nav-link" active-class="active" aria-current="page">
-            Home (Week 5)
-          </router-link>
+          <router-link to="/" class="nav-link" active-class="active" aria-current="page"
+            >Home (Week 5)</router-link
+          >
         </li>
-
         <li class="nav-item">
           <router-link to="/about" class="nav-link" active-class="active">About</router-link>
         </li>
-
-        <!-- This single slot toggles between "Firebase Signin" and "Log out" -->
         <li class="nav-item">
-          <!-- Logged OUT: show Signin -->
-          <router-link
-            v-if="!user"
-            :to="{ name: 'FirebaseSignin' }"
-            class="nav-link"
-            active-class="active"
-          >
-            Firebase Signin
-          </router-link>
-
-          <!-- Logged IN: show Log out -->
-          <button
-            v-else
-            class="nav-link btn btn-link p-0"
-            @click="logout"
-            title="Sign out"
-          >
-            Log out
-          </button>
+          <router-link to="/Firelogin" class="nav-link" active-class="active">Firebase Login</router-link>
         </li>
-
         <li class="nav-item">
-          <router-link to="/register" class="nav-link" active-class="active">
-            Firebase Register
-          </router-link>
+          <router-link to="/FireRegister" class="nav-link" active-class="active">Firebase Register</router-link>
         </li>
-
         <li class="nav-item">
-          <router-link to="/add-book" class="nav-link" active-class="active">
-            Add Book
-          </router-link>
+          <router-link to="/addBook" class="nav-link" active-class="active">Add Book</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/GetBookCount" class="nav-link" active-class="active">Get Book Count</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/WeatherCheck" class="nav-link" active-class="active">Get Weather</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/CountBookAPI" class="nav-link" active-class="active">Count Book API</router-link>
         </li>
       </ul>
     </header>
   </div>
 </template>
-
-<script setup>
-import { ref, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
-
-const router = useRouter()
-const auth = getAuth()
-
-// reactive user so the label flips immediately after sign-in/sign-out
-const user = ref(auth.currentUser)
-const stop = onAuthStateChanged(auth, (u) => (user.value = u))
-onUnmounted(() => stop && stop())
-
-const logout = async () => {
-  await signOut(auth)                 // logs out the current user
-  user.value = null                   // update header instantly
-  router.push({ name: 'FirebaseSignin' }) // back to sign-in page
-}
-</script>
 
 <style scoped>
 .b-example-divider {
@@ -83,12 +45,29 @@ const logout = async () => {
     inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
     inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
 }
-.form-control-dark { color:#fff; background-color:var(--bs-dark); border-color:var(--bs-gray); }
-.form-control-dark:focus {
-  color:#fff; background-color:var(--bs-dark); border-color:#fff;
-  box-shadow:0 0 0 0.25rem rgba(255,255,255,0.25);
+
+.form-control-dark {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: var(--bs-gray);
 }
-.bi { vertical-align:-0.125em; fill:currentColor; }
-.text-small { font-size:85%; }
-.dropdown-toggle { outline:0; }
+.form-control-dark:focus {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: #fff;
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.text-small {
+  font-size: 85%;
+}
+
+.dropdown-toggle {
+  outline: 0;
+}
 </style>
