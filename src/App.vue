@@ -1,7 +1,7 @@
 <script setup>
-import JSONLab from './components/JSONLab.vue'
+
 import BHeader from './components/BHeader.vue'
-import HomeView from './views/HomeView.vue'
+
 </script>
 
 <template>
@@ -9,7 +9,9 @@ import HomeView from './views/HomeView.vue'
   <header v-if="showHeader">
     <BHeader />
   </header>
-
+  <li class="nav-item">
+          <router-link to="/WeatherCheck" class="nav-link" active-class="active">Get Weather</router-link>
+        </li>
   <main class="main-box">
     <!-- <LibraryRegistrationForm /> -->
     <!-- <JSONLab /> -->
@@ -21,21 +23,7 @@ import HomeView from './views/HomeView.vue'
 </template>
 
 <script>
-  import BHeader from './components/BHeader.vue';
-  import CountBookAPI from "./views/CountBookAPI.vue";
-  
-  export default {
-    name: 'App',
-    components: {
-      BHeader,
-      CountBookAPI
-    },
-    computed: {
-      showHeader() {
-        return this.$route.name !== 'CountBookAPI';
-      }
-    }
-  };
+
 </script>
 
 <style scoped>
