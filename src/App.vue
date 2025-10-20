@@ -14,7 +14,7 @@ import BHeader from './components/BHeader.vue'
         </li>
   <main class="main-box">
     <!-- <LibraryRegistrationForm /> -->
-    <!-- <JSONLab /> -->
+    <!-- <JSONLab />    -->
     
     <router-view></router-view>
     
