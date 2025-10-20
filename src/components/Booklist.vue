@@ -1,35 +1,44 @@
 <template>
-  <div>
-    <h1> Books with ISBN > 1000</h1>
-    <ul>
+    <div>
+      <h1>Books with ISBN > 1000</h1>
+      <ul>
         <li v-for="book in books" :key="book.id">
-            {{ book.isbn }} - {{ book.name }}
+          {{ book.name }} - ISBN: {{ book.isbn }}
         </li>
-    </ul>
-  </div>
-</template>
+      </ul>
+    </div>
+  </template>
 
 <script>
 import { ref, onMounted } from 'vue';
-import db from '../Firebase/init.js';
-import { collection, query, where, getDocs } from "firebase/firestore";
+import db from '../firebase/init.js';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 export default {
-    setup() {
-        const books = ref([]);
+  setup() {
+    const books = ref([]);
 
-        const fetchBooks = async () => {
-            const q = query(collection(db, 'books'), where('isbn', '>', 1000));
-            const querySnapshot = await getDocs(q);
-            books.value = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        };
-
-
-        onMounted(() => {
-            fetchBooks();
+    const fetchBooks = async () => {
+      try {
+        const q = query(collection(db, 'books'), where('isbn', '>', 1000));
+        const querySnapshot = await getDocs(q);
+        const booksArray = [];
+        querySnapshot.forEach((doc) => {
+          booksArray.push({ id: doc.id, ...doc.data() });
         });
+        books.value = booksArray;
+      } catch (error) {
+        console.error('Error fetching books: ', error);
+      }
+    };
 
-        return { books };
-    }
+    onMounted(() => {
+      fetchBooks();
+    });
+
+    return {
+      books
+    };
+  }
 };
 </script>
