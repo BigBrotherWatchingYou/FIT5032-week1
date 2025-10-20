@@ -14,7 +14,7 @@ import BHeader from './components/BHeader.vue'
         </li>
   <main class="main-box">
     <!-- <LibraryRegistrationForm /> -->
-    <!-- <JSONLab /> -->
+    <!-- <JSONLab />    -->
     
     <router-view></router-view>
     
@@ -52,5 +52,6 @@ import BHeader from './components/BHeader.vue'
     place-items: flex-start;
     flex-wrap: wrap;
   }
+    link:https://fit5032-week1.pages.dev/
 } */
 </style>
